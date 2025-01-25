@@ -19,7 +19,7 @@ const DUMMY_DATA = [
 const DevicesSection = () => {
   return (
     <div className='w-full mt-4'>
-      <div className='w-full md:max-w-[80%] md:min-w-[50%] grid grid-cols-2 md:grid-cols-3 gap-4'>
+      <div className='w-full lg:w-[50%] grid grid-cols-2 md:grid-cols-3 gap-4'>
         {DUMMY_DATA.map((device) => (
           <DeviceCard key={device.id} device={device} />
         ))}

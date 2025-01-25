@@ -3,7 +3,7 @@ const Colors = {
     text: '#041834',
     background: '#d2f1ff',
     background2: '#effaff',
-    cardBackground: '#afe8ff',
+    cardBackground: '#92cee6',
     tabBarBackground: '#78dcff',
     tabItemActive: '#78dcff',
     tabItemInactive: '#041834',

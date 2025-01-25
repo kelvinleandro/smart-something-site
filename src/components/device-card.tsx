@@ -15,7 +15,12 @@ import useTheme from "@/hooks/useTheme";
 const DeviceCard = ({ device }: { device: DeviceData }) => {
   const { theme } = useTheme();
   return (
-    <Card>
+    <Card
+      className="px-2 shadow-lg shadow-blue-500/50 border-none"
+      style={{
+        background: theme.cardBackground,
+      }}
+    >
       <CardHeader>
         <CardTitle style={{ color: theme.text }}>{device.name}</CardTitle>
         <CardDescription style={{ color: theme.text }}>
@@ -35,7 +40,8 @@ const DeviceCard = ({ device }: { device: DeviceData }) => {
         ) : device.type === Devices.AC ? (
           <div className="">
             <p style={{ color: theme.text }}>
-              <span className="font-bold">Temperature:</span> {typeof device.status === "string" && device.status}
+              <span className="font-bold">Temperature:</span>{" "}
+              {typeof device.status === "string" && device.status}
             </p>
 
             <div className="flex flex-row gap-1 items-center">
@@ -66,12 +72,14 @@ const DeviceCard = ({ device }: { device: DeviceData }) => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-row gap-2">
-            <p style={{ color: theme.text }} className="font-bold">Status:</p>
+          <div className="flex flex-row flex-wrap gap-2">
+            <p style={{ color: theme.text }} className="font-bold">
+              Status:
+            </p>
 
-            <div className="flex flex-row gap-1">
+            <div className="flex flex-row gap-1 items-center">
               <p style={{ color: theme.text }}>OFF</p>
-              <Switch />
+              <Switch className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500" />
               <p style={{ color: theme.text }}>ON</p>
             </div>
           </div>
