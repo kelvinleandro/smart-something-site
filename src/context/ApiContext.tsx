@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
 import axios, { AxiosInstance } from "axios";
+import { log } from "console";
 
 type ApiContextType = {
   instance: AxiosInstance | null;
