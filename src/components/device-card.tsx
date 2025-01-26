@@ -12,14 +12,21 @@ import { Button } from "./ui/button";
 import { Devices, DeviceData } from "@/types/devices";
 import useTheme from "@/hooks/useTheme";
 
-const DeviceCard = ({ device }: { device: DeviceData }) => {
+const DeviceCard = ({
+  device,
+  onClick,
+}: {
+  device: DeviceData;
+  onClick: () => void;
+}) => {
   const { theme } = useTheme();
   return (
     <Card
-      className="px-2 shadow-lg shadow-blue-500/50 border-none"
+      className="cursor-pointer px-2 shadow-lg shadow-blue-500/50 border-none"
       style={{
         background: theme.cardBackground,
       }}
+      onClick={onClick}
     >
       <CardHeader>
         <CardTitle style={{ color: theme.text }}>{device.name}</CardTitle>
@@ -49,7 +56,7 @@ const DeviceCard = ({ device }: { device: DeviceData }) => {
                 Level:
               </p>
               <Button
-                style={{ backgroundColor: theme.cardBackground }}
+                style={{ backgroundColor: theme.background }}
                 className="rounded-full"
                 size="icon"
                 onClick={() => {}}
@@ -61,7 +68,7 @@ const DeviceCard = ({ device }: { device: DeviceData }) => {
                 {device.level}
               </p>
               <Button
-                style={{ backgroundColor: theme.cardBackground }}
+                style={{ backgroundColor: theme.background }}
                 className="rounded-full"
                 size="icon"
                 onClick={() => {}}
