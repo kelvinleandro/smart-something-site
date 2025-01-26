@@ -13,17 +13,17 @@ import CustomMap from "./map";
 import useTheme from "@/hooks/useTheme";
 
 const DUMMY_DATA = [
-  { type: Devices.AC, name: "AC", status: "23°C", level: 3, id: 1, max: 3 },
+  { type: Devices.AC, name: "AC", state: "23°C", level: 3, id: 1, max: 3 },
   {
     type: Devices.CAR_LOC,
     name: "Car Location",
-    status: {
+    state: {
       lat: -3.742008,
       lng: -38.574889,
     },
     id: 2,
   },
-  { type: Devices.HEADLIGHT, name: "Headlight", status: "ON", id: 3 },
+  { type: Devices.HEADLIGHT, name: "Headlight", state: "ON", id: 3 },
 ];
 
 const DevicesSection = () => {
@@ -57,7 +57,7 @@ const DevicesSection = () => {
 
       {isMapOpen &&
         selectedDevice &&
-        typeof selectedDevice.status === "object" && (
+        typeof selectedDevice.state === "object" && (
           <>
           {/* large screen map */}
           <div
@@ -78,7 +78,7 @@ const DevicesSection = () => {
               onClick={handleMapClose}
               style={{ color: theme.text }}
             />
-            <CustomMap position={selectedDevice.status} />
+            <CustomMap position={selectedDevice.state} />
           </div>
 
           {/* small screen map */}
@@ -89,7 +89,7 @@ const DevicesSection = () => {
                 <DialogDescription><span className="font-bold">ID:</span> {selectedDevice.id}</DialogDescription>
               </DialogHeader>
               <div className="w-full min-h-52 max-h-80">
-                <CustomMap position={selectedDevice.status} />
+                <CustomMap position={selectedDevice.state} />
               </div>
             </DialogContent>
           </Dialog>

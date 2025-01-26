@@ -7,7 +7,7 @@ export enum Devices {
 export type DeviceData = {
   type: Devices;
   name: string;
-  status: string | { lat: number; lng: number };
+  state: string | { lat: number; lng: number };
   level?: number;
   id: number;
   min?: number;

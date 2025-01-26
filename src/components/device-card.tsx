@@ -38,17 +38,17 @@ const DeviceCard = ({
         {device.type === Devices.CAR_LOC ? (
           <>
             <p style={{ color: theme.text }}>
-              Lat: {typeof device.status === "object" && device.status.lat}
+              Lat: {typeof device.state === "object" && device.state.lat}
             </p>
             <p style={{ color: theme.text }}>
-              Lng: {typeof device.status === "object" && device.status.lng}
+              Lng: {typeof device.state === "object" && device.state.lng}
             </p>
           </>
         ) : device.type === Devices.AC ? (
           <div className="">
             <p style={{ color: theme.text }}>
               <span className="font-bold">Temperature:</span>{" "}
-              {typeof device.status === "string" && device.status}
+              {typeof device.state === "string" && device.state}
             </p>
 
             <div className="flex flex-row gap-1 items-center">
@@ -81,7 +81,7 @@ const DeviceCard = ({
         ) : (
           <div className="flex flex-row flex-wrap gap-2">
             <p style={{ color: theme.text }} className="font-bold">
-              Status:
+              State:
             </p>
 
             <div className="flex flex-row gap-1 items-center">
