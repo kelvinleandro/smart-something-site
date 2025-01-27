@@ -70,7 +70,7 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
     if (!instance) return;
     
     try {
-      const response = await instance.put<DeviceData>(`/actuators/${name}`, { state });
+      const response = await instance.post<DeviceData>("/actuators", { name, state });
       return response?.data;
     } catch (error) {
       console.log(error);
