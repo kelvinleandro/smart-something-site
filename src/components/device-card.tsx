@@ -19,7 +19,7 @@ const DeviceCard = ({
   onClick: () => void;
 }) => {
   const { theme } = useTheme();
-  const { getDevice } = useApi();
+  const { getDevice, setActuator } = useApi();
   const [device, setDevice] = useState<Device | null>(null);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const DeviceCard = ({
                 style={{ backgroundColor: theme.background }}
                 className="rounded-full"
                 size="icon"
-                onClick={() => {}}
+                onClick={() => setActuator(deviceName, `${device.level - 1}`)}
                 disabled={device.level === MIN_AC_LEVEL}
               >
                 <LucideMinus style={{ color: theme.text }} />
@@ -77,7 +77,7 @@ const DeviceCard = ({
                 style={{ backgroundColor: theme.background }}
                 className="rounded-full"
                 size="icon"
-                onClick={() => {}}
+                onClick={() => setActuator(deviceName, `${device.level + 1}`)}
                 disabled={device.level === MAX_AC_LEVEL}
               >
                 <LucidePlus style={{ color: theme.text }} />
@@ -94,6 +94,9 @@ const DeviceCard = ({
               <p style={{ color: theme.text }}>OFF</p>
               <Switch
                 checked={device.status == "ON"}
+                onCheckedChange={() =>
+                  setActuator(deviceName, device.status == "ON" ? "OFF" : "ON")
+                }
                 className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
               />
               <p style={{ color: theme.text }}>ON</p>
