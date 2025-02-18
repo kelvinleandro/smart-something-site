@@ -11,6 +11,14 @@ export default function Home() {
   const { theme } = useTheme();
   const { baseUrl, updateDevicesNames } = useApi();
 
+  const handleUpdate = () => {
+    try {
+      updateDevicesNames();
+    } catch (e) {
+      console.log("Error:", e);
+    }
+  };
+
   return (
     <div
       className="flex flex-col w-full h-full items-center pt-4 px-8"
@@ -26,7 +34,7 @@ export default function Home() {
         <div className="absolute flex gap-2 right-4 items-center">
           {baseUrl.length > 0 && (
             <Button
-              onClick={updateDevicesNames}
+              onClick={handleUpdate}
               className="rounded-xl"
               style={{
                 color: theme.text,

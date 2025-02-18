@@ -64,25 +64,25 @@ const DeviceCard = ({
 
   useEffect(() => {
     const fetchDevice = async () => {
-      if (deviceName.includes("temperature_sensor")) {
-        setDeviceState("23.3567");
-      } else if (deviceName.includes("light")) {
-        setDeviceState("0");
-      } else if (deviceName.includes("door_lock")) {
-        setDeviceState("LOCKED");
-      } else if (deviceName.includes("arconditioner")) {
-        setDeviceState("32.12");
-      } else if (deviceName.includes("carloc")) {
-        setDeviceState("-3.742008|-38.574889");
-      }
-      // try {
-      //   const state = await getDevice(deviceName);
-      //   if (state) {
-      //     setDeviceState(state as DeviceState);
-      //   }
-      // } catch (e) {
-      //   console.error(e);
+      // if (deviceName.includes("temperature_sensor")) {
+      //   setDeviceState("23.3567");
+      // } else if (deviceName.includes("light")) {
+      //   setDeviceState("0");
+      // } else if (deviceName.includes("door_lock")) {
+      //   setDeviceState("LOCKED");
+      // } else if (deviceName.includes("arconditioner")) {
+      //   setDeviceState("32.12");
+      // } else if (deviceName.includes("car_loc")) {
+      //   setDeviceState("-3.742008|-38.574889");
       // }
+      try {
+        const state = await getDevice(deviceName);
+        if (state) {
+          setDeviceState(state as DeviceState);
+        }
+      } catch (e) {
+        console.error(e);
+      }
     };
     fetchDevice();
   }, [deviceName, getDevice]);
@@ -90,7 +90,7 @@ const DeviceCard = ({
   return (
     <Card
       className={`${
-        deviceName.includes("carloc") && "cursor-pointer"
+        deviceName.includes("car_loc") && "cursor-pointer"
       } px-2 shadow-lg shadow-blue-500/50 border-none min-h-full flex flex-col`}
       style={{
         background: theme.cardBackground,
@@ -98,11 +98,13 @@ const DeviceCard = ({
       onClick={onClick}
     >
       <CardHeader className="flex-1">
-        <CardTitle style={{ color: theme.text }}>{deviceName}</CardTitle>
+        <CardTitle style={{ color: theme.text }} className="text-lg">
+          {deviceName}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-3">
-        {deviceName.includes("carloc") ? (
-          // carloc content
+        {deviceName.includes("car_loc") ? (
+          // car_loc content
           <LucideMapPin style={{ color: theme.text }} className="w-14 h-14" />
         ) : deviceState && deviceName.includes("temperature_sensor") ? (
           // temperature_sensor content
@@ -131,7 +133,7 @@ const DeviceCard = ({
                 className="rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
                 style={{ backgroundColor: theme.background }}
               >
-                <LockOpen style={{ color: theme.text }} className="w-10 h-10" />
+                <LockOpen style={{ color: theme.text }} className="w-8 h-8" />
               </div>
             )}
           </>
@@ -199,7 +201,7 @@ const DeviceCard = ({
         )}
       </CardContent>
       <CardFooter className="flex flex-1 justify-end">
-        {!deviceName.includes("carloc") && (
+        {!deviceName.includes("car_loc") && (
           <Button
             onClick={refresh}
             className="rounded-full"

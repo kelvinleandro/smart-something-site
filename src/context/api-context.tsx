@@ -53,7 +53,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await instance.get<string[]>("/sensors");
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        console.log(error);
+      }
     }
   }, [instance]);
 
@@ -64,7 +68,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await instance.get<string[]>("/actuators");
       return response.data;
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        console.log(error);
+      }
     }
   }, [instance]);
 
@@ -78,7 +86,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
         });
         return response.data;
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          console.log(error);
+        }
       }
     },
     [instance]
@@ -94,7 +106,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
         });
         return response.data;
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          console.log(error);
+        }
       }
     },
     [instance]
@@ -111,7 +127,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
         });
         return response.data;
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          console.log(error);
+        }
       }
     },
     [instance]
@@ -122,13 +142,17 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
       if (!instance) return;
 
       try {
-        if (SENSORS_PREFIX.includes(name)) {
+        if (SENSORS_PREFIX.some((prefix) => name.startsWith(prefix))) {
           return getSensor(name);
         } else {
           return getActuator(name);
         }
       } catch (error) {
-        console.log(error);
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          console.log(error);
+        }
       }
     },
     [instance, getSensor, getActuator]

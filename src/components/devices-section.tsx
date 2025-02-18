@@ -9,15 +9,15 @@ import DeviceCard from "@/components/device-card";
 import CustomMap from "./map";
 import { useApi } from "@/hooks/useApi";
 
-const DEVICES_NAMES = [
-  "door_lock-3",
-  "arconditioner-2",
-  "light-1",
-  "arconditioner-1",
-  "temperature_sensor-2",
-  "arconditioner-3",
-  "carloc-1",
-];
+// const DEVICES_NAMES = [
+//   "door_lock-3",
+//   "arconditioner-2",
+//   "light-1",
+//   "arconditioner-1",
+//   "temperature_sensor-2",
+//   "arconditioner-3",
+//   "car_loc-1",
+// ];
 
 const DevicesSection = () => {
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -25,7 +25,7 @@ const DevicesSection = () => {
   const { devicesNames } = useApi();
 
   const handleCardClick = (name: string) => {
-    if (!name.includes("carloc")) return;
+    if (!name.includes("car_loc")) return;
 
     setSelectedDevice(name);
     setIsMapOpen(true);
@@ -39,7 +39,7 @@ const DevicesSection = () => {
   return (
     <div className="w-full mt-4 flex justify-between lg:gap-8">
       <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-4 items-start">
-        {DEVICES_NAMES.map((name, index) => (
+        {devicesNames.map((name, index) => (
           <DeviceCard
             key={index}
             deviceName={name}
@@ -52,7 +52,7 @@ const DevicesSection = () => {
         <Dialog open={isMapOpen} onOpenChange={handleMapClose}>
           <DialogContent className="overflow-hidden h-[80%] text-white  p-8">
             <DialogHeader>
-              <DialogTitle>{selectedDevice}</DialogTitle>
+              <DialogTitle className="text-3xl">{selectedDevice}</DialogTitle>
             </DialogHeader>
             <div className="w-full min-h-52 max-h-80">
               <CustomMap deviceName={selectedDevice} />
