@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import Colors from "@/constants/Colors";
+import Colors from "@/constants/colors";
 
 type ThemeContextType = {
   currentColorScheme: "dark" | "light";
