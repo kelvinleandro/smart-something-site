@@ -5,10 +5,11 @@ import useTheme from "@/hooks/useTheme";
 import ApiUrlPrompt from "@/components/api-url-prompt";
 import ToggleThemeButton from "@/components/toggle-theme-button";
 import DevicesSection from "@/components/devices-section";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { theme } = useTheme();
-  const { baseUrl } = useApi();
+  const { baseUrl, updateDevicesNames } = useApi();
 
   return (
     <div
@@ -22,7 +23,20 @@ export default function Home() {
         >
           SMART CAR
         </h1>
-        <div className="absolute right-4">
+        <div className="absolute flex gap-2 right-4 items-center">
+          {baseUrl.length > 0 && (
+            <Button
+              onClick={updateDevicesNames}
+              className="rounded-xl"
+              style={{
+                color: theme.text,
+                backgroundColor: theme.cardBackground,
+              }}
+            >
+              Update
+            </Button>
+          )}
+
           <ToggleThemeButton />
         </div>
       </div>

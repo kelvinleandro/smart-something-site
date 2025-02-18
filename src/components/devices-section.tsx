@@ -9,15 +9,15 @@ import DeviceCard from "@/components/device-card";
 import CustomMap from "./map";
 import { useApi } from "@/hooks/useApi";
 
-// const DEVICES_NAMES = [
-//   "door_lock-3",
-//   "arconditioner-2",
-//   "light-1",
-//   "arconditioner-1",
-//   "temperature_sensor-2",
-//   "arconditioner-3",
-//   "carloc-1",
-// ];
+const DEVICES_NAMES = [
+  "door_lock-3",
+  "arconditioner-2",
+  "light-1",
+  "arconditioner-1",
+  "temperature_sensor-2",
+  "arconditioner-3",
+  "carloc-1",
+];
 
 const DevicesSection = () => {
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -39,7 +39,7 @@ const DevicesSection = () => {
   return (
     <div className="w-full mt-4 flex justify-between lg:gap-8">
       <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-4 items-start">
-        {devicesNames.map((name, index) => (
+        {DEVICES_NAMES.map((name, index) => (
           <DeviceCard
             key={index}
             deviceName={name}

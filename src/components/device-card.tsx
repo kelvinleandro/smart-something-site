@@ -64,25 +64,25 @@ const DeviceCard = ({
 
   useEffect(() => {
     const fetchDevice = async () => {
-      // if (deviceName.includes("temperature_sensor")) {
-      //   setDeviceState("23.3567");
-      // } else if (deviceName.includes("light")) {
-      //   setDeviceState("0");
-      // } else if (deviceName.includes("door_lock")) {
-      //   setDeviceState("LOCKED");
-      // } else if (deviceName.includes("arconditioner")) {
-      //   setDeviceState("32.12");
-      // } else if (deviceName.includes("carloc")) {
-      //   setDeviceState("-3.742008|-38.574889");
-      // }
-      try {
-        const state = await getDevice(deviceName);
-        if (state) {
-          setDeviceState(state as DeviceState);
-        }
-      } catch (e) {
-        console.error(e);
+      if (deviceName.includes("temperature_sensor")) {
+        setDeviceState("23.3567");
+      } else if (deviceName.includes("light")) {
+        setDeviceState("0");
+      } else if (deviceName.includes("door_lock")) {
+        setDeviceState("LOCKED");
+      } else if (deviceName.includes("arconditioner")) {
+        setDeviceState("32.12");
+      } else if (deviceName.includes("carloc")) {
+        setDeviceState("-3.742008|-38.574889");
       }
+      // try {
+      //   const state = await getDevice(deviceName);
+      //   if (state) {
+      //     setDeviceState(state as DeviceState);
+      //   }
+      // } catch (e) {
+      //   console.error(e);
+      // }
     };
     fetchDevice();
   }, [deviceName, getDevice]);
