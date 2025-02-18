@@ -1,14 +1,15 @@
 "use client";
 import { createContext, useState, useCallback, useMemo } from "react";
+import { PostData } from "@/types/devices";
+import { SENSORS_PREFIX } from "@/constants/devices-prefix";
 import axios from "axios";
-import { Device } from "@/types/devices";
 
 type ApiContextType = {
   changeBaseUrl: (url: string) => void;
   baseUrl: string;
   devicesNames: string[];
-  getDevice: (name: string) => Promise<Device | undefined>;
-  setActuator: (name: string, state: string) => Promise<Device | undefined>;
+  getDevice: (name: string) => Promise<string | undefined>;
+  setActuator: (name: string, state: string) => Promise<PostData | undefined>;
   updateDevicesNames: () => Promise<void>;
 };
 
@@ -50,7 +51,7 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       const response = await instance.get<string[]>("/sensors");
-      return response?.data;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -61,21 +62,21 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       const response = await instance.get<string[]>("/actuators");
-      return response?.data;
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   }, [instance]);
 
   const getSensor = useCallback(
-    async (name: string): Promise<Device | undefined> => {
+    async (name: string): Promise<string | undefined> => {
       if (!instance) return;
 
       try {
-        const response = await instance.get<Device>("/sensors", {
+        const response = await instance.get<string>("/sensors", {
           params: { name },
         });
-        return response?.data;
+        return response.data;
       } catch (error) {
         console.log(error);
       }
@@ -84,14 +85,14 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const getActuator = useCallback(
-    async (name: string): Promise<Device | undefined> => {
+    async (name: string): Promise<string | undefined> => {
       if (!instance) return;
 
       try {
-        const response = await instance.get<Device>("/actuators", {
+        const response = await instance.get<string>("/actuators", {
           params: { name },
         });
-        return response?.data;
+        return response.data;
       } catch (error) {
         console.log(error);
       }
@@ -100,15 +101,15 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const setActuator = useCallback(
-    async (name: string, state: string): Promise<Device | undefined> => {
+    async (name: string, state: string): Promise<PostData | undefined> => {
       if (!instance) return;
 
       try {
-        const response = await instance.post<Device>("/actuators", {
+        const response = await instance.post<PostData>("/actuators", {
           name,
           state,
         });
-        return response?.data;
+        return response.data;
       } catch (error) {
         console.log(error);
       }
@@ -117,11 +118,11 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const getDevice = useCallback(
-    async (name: string): Promise<Device | undefined> => {
+    async (name: string): Promise<string | undefined> => {
       if (!instance) return;
 
       try {
-        if (name.includes("CarLoc")) {
+        if (SENSORS_PREFIX.includes(name)) {
           return getSensor(name);
         } else {
           return getActuator(name);
@@ -138,7 +139,8 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
     const actuators = await getActuators();
 
     if (sensors && actuators) {
-      setDevicesNames([...sensors, ...actuators]);
+      const uniqueDevicesNames = [...new Set([...sensors, ...actuators])];
+      setDevicesNames(uniqueDevicesNames);
     }
   }, [getSensors, getActuators]);
 

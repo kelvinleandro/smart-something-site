@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ApiContext } from "@/context/ApiContext";
+import { ApiContext } from "@/context/api-context";
 
 export const useApi = () => {
   const context = useContext(ApiContext);
@@ -7,4 +7,4 @@ export const useApi = () => {
     throw new Error("useApi must be used within a ApiProvider");
   }
   return context;
-}
+};

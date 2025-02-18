@@ -23,8 +23,13 @@ const ApiUrlPrompt = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 mt-auto mb-auto">
-      <h2 className="text-2xl font-bold text-center" style={{ color: theme.text }}>What is your API URL?</h2>
+    <div className="flex flex-col gap-2 flex-1 justify-center items-center">
+      <h2
+        className="text-2xl font-bold text-center"
+        style={{ color: theme.text }}
+      >
+        What is your API URL?
+      </h2>
       <div className="flex flex-col sm:flex-row gap-2">
         <div className="flex flex-col">
           <Input

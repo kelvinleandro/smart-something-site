@@ -1,15 +1,18 @@
-export interface CarLoc {
-  lat: number;
-  lng: number;
-}
+export type OnOffState = "ON" | "OFF";
+export type AirConditionerState = OnOffState;
+export type LightState = OnOffState | `ON|${number}` | `OFF|${number}`;
+export type TemperatureState = `${number}`;
+export type DoorLockState = "LOCKED" | "UNLOCKED";
+export type CarLocState = `${number}|${number}`;
 
-export interface AirConditioner {
-  level: number;
-  temperature: number;
-}
+export type PostData = {
+  name: string;
+  state: string;
+};
 
-export interface Headlight {
-  status: string;
-}
-
-export type Device = AirConditioner | CarLoc | Headlight;
+export type DeviceState =
+  | AirConditionerState
+  | LightState
+  | TemperatureState
+  | DoorLockState
+  | CarLocState;
