@@ -24,14 +24,14 @@ export default function Home() {
       className="flex flex-col w-full h-full items-center pt-4 px-8"
       style={{ backgroundColor: theme.background }}
     >
-      <div className="w-full relative flex items-center justify-center self-start">
+      <div className="w-full relative flex items-center justify-between md:justify-center self-start">
         <h1
-          className="text-4xl font-bold text-center justify-self-center"
+          className="text-2xl md:text-4xl font-bold text-center justify-self-center"
           style={{ color: theme.text }}
         >
           SMART CAR
         </h1>
-        <div className="absolute flex gap-2 right-4 items-center">
+        <div className="md:absolute flex gap-2 right-4 items-center">
           {baseUrl.length > 0 && (
             <Button
               onClick={handleUpdate}
