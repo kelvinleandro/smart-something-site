@@ -27,7 +27,7 @@ const DeviceCard = ({
   onClick: () => void;
 }) => {
   const { theme } = useTheme();
-  const { getDevice, setActuator } = useApi();
+  const { getDevice, setActuator, getSensor } = useApi();
   const [deviceState, setDeviceState] = useState<DeviceState | null>(null);
   const [sliderValue, setSliderValue] = useState<number>(0);
 
@@ -42,7 +42,7 @@ const DeviceCard = ({
 
   const refresh = async () => {
     try {
-      const state = await getDevice(deviceName);
+      const state = await getSensor(deviceName);
       if (state) {
         setDeviceState(state as DeviceState);
       }

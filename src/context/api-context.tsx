@@ -9,6 +9,7 @@ type ApiContextType = {
   baseUrl: string;
   devicesNames: string[];
   getDevice: (name: string) => Promise<string | undefined>;
+  getSensor: (name: string) => Promise<string | undefined>;
   setActuator: (name: string, state: string) => Promise<PostData | undefined>;
   updateDevicesNames: () => Promise<void>;
 };
@@ -176,6 +177,7 @@ export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
         devicesNames,
         setActuator,
         getDevice,
+        getSensor,
         updateDevicesNames,
       }}
     >
