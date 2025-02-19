@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Car Web App
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This is a web-based smart car application built with Next.js and TypeScript. It allows users to monitor and control various car devices through a REST API. The gateway server, responsible for handling requests, is managed in a [separate repository](https://github.com/gabrielfruet/gateway-iot).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Car Location**: View the car's real-time location on an interactive map.
+- **Car Lock Status**: Check whether the car is locked or unlocked.
+- **Temperature Sensor**: Monitor the car's current temperature.
+- **Air Conditioner Control**: Turn the AC on or off, with temperature feedback.
+- **Light Control**: Adjust the light brightness level (0-100).
+- **Theme Support**: Light and dark mode support.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To run the application, ensure you have the following:
 
-## Learn More
+- Node.js
+- A valid **Google Maps API Key**
+- Access to the gateway REST API
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the Repository**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/kelvinleandro/smart-something-site.git
+   cd smart-something-site
+   ```
 
-## Deploy on Vercel
+2. **Install Dependencies**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Configure Environment Variables**:
+
+   - Create a `.env` file in the root directory.
+   - Add the following:
+     ```env
+     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+     ```
+
+4. **Run the Application**:
+   ```bash
+   npm run dev
+   ```
+   The app will be available at `http://localhost:3000`.
+
+## Usage
+
+1. Open the web application in your browser.
+2. Use the interactive dashboard to monitor and control car devices:
+   - View the car's location on Google Maps.
+   - Check and toggle the car lock status.
+   - Monitor the temperature sensor.
+   - Turn the air conditioner on or off.
+   - Adjust the light brightness.
+3. The UI automatically updates based on data from the gateway.
+
+## Technologies Used
+
+- **Next.js**
+- **TypeScript**
+- **Google Maps API** (for car location tracking)
+- **Tailwind CSS** (for styling)
+- **REST API** (for backend communication)
+- **Axios** (for API requests)
+- **ShadCN UI** (for UI components)
+
+## Notes
+
+- Ensure the gateway server is running and accessible.
+- For further details on the gateway setup, refer to the [gateway repository](https://github.com/gabrielfruet/gateway-iot).
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
